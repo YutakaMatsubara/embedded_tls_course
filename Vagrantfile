@@ -102,6 +102,8 @@ Vagrant.configure("2") do |config|
     # python3
     sudo apt-get install -y python3 pip
     pip install hashlib
+    curl -OL https://github.com/YutakaMatsubara/embedded_tls_course/raw/main/test.py
+    chown vagrant:vagrant test.py
 
     # vscode (optional)
     curl -L https://go.microsoft.com/fwlink/?LinkID=760868 -o vscode.deb
