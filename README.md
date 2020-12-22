@@ -20,4 +20,8 @@
 # vagrant up
 # vagrant provision
 ```
+
+### Log-in to the VM
 - Log-in to Ubuntu 20.04 running on VirtualBox with vagrant/vagrant (username/password).
+- Enable 3D accellaration option on Settings->Display in VirtualBox if GUI of Ubuntu is unstable.
+
