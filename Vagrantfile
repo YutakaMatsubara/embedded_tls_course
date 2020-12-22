@@ -113,7 +113,7 @@ Vagrant.configure("2") do |config|
     rm vscode.deb
 
     # Installation for the 2nd day
-
+    
     apt-get install -y libsdl2-dev libsdl2-image-dev can-utils
     # ICSim
     git clone https://github.com/zombieCraig/ICSim.git

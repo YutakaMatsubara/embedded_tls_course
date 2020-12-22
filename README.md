@@ -5,6 +5,7 @@
 - python3
 - vscode
 - wolfssl/wolf-examples
+- ICSim
 
 ## usage
 
