@@ -75,6 +75,8 @@ Vagrant.configure("2") do |config|
     apt-get update
     apt-get install -y ubuntu-desktop libxft2:i386 libxext6:i386 libncurses5:i386 libstdc++6:i386 git curl
 
+    # Installation for the 1st day
+
     # WireShark
     DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install wireshark
     setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/bin/dumpcap
@@ -110,6 +112,12 @@ Vagrant.configure("2") do |config|
     apt install ./vscode.deb
     rm vscode.deb
 
+    # Installation for the 2nd day
+
+    apt-get install -y libsdl2-dev libsdl2-image-dev can-utils
+    # ICSim
+    git clone https://github.com/zombieCraig/ICSim.git
+    chown vagrant:vagrant ICSim -R
     
   SHELL
 end
