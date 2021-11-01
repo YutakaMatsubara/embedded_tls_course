@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "bento/ubuntu-20.04"
+  config.vm.box = "bento/ubuntu-18.04"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -75,8 +75,6 @@ Vagrant.configure("2") do |config|
     apt-get update
     apt-get install -y ubuntu-desktop libxft2:i386 libxext6:i386 libncurses5:i386 libstdc++6:i386 git curl
 
-    # Installation for the 1st day
-
     # WireShark
     DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install wireshark
     setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/bin/dumpcap
@@ -112,12 +110,36 @@ Vagrant.configure("2") do |config|
     apt install ./vscode.deb
     rm vscode.deb
 
-    # Installation for the 2nd day
+    # CAN
+    sudo apt-get install -y libsdl2-dev libsdl2-image-dev can-utils
+
+    # ICSim
+    cd /home/vagrant
+    git clone https://github.com/zombieCraig/ICSim.git
+    chown vagrant:vagrant ICSim -R
+
+    # qt5
+    cd /home/vagrant
+    sudo apt install -y qml-module-qt-labs-folderlistmodel qml-module-qtquick-extras qml-module-qtquick-controls2 qt5-default libqt5quickcontrols2-5 qtquickcontrols2-5-dev qtcreator qtcreator-doc libqt5serialport5-dev build-essential qml-module-qt3d qt3d5-dev qtdeclarative5-dev qtconnectivity5-dev qtmultimedia5-dev qttools5-dev g++
+    sudo apt-get install -y qtbase5-private-dev libqt5serialport5-dev
     
-    apt-get install -y libsdl2-dev libsdl2-image-dev can-utils
-    # ICSim
-    git clone https://github.com/zombieCraig/ICSim.git
-    chown vagrant:vagrant ICSim -R
-    
+    # qtserialbus https://gist.github.com/awesomebytes/ed90785324757b03c8f01e3ffa36d436
+    cd /home/vagrant
+    git clone git://code.qt.io/qt/qtserialbus.git
+    cd qtserialbus
+    git checkout 5.9.8
+    qmake
+    make -j8
+    sudo make install
+
+    # savvyCAN
+    cd /home/vagrant
+    git clone -b V199.1 https://github.com/collin80/SavvyCAN.git
+    chown vagrant:vagrant SavvyCAN -R
+#    cd SavvyCAN
+#    qmake CONFIG+=debug
+#    make -j8
+
+
   SHELL
 end
